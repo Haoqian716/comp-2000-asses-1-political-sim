@@ -67,6 +67,9 @@ public class Grid extends JPanel{
     }
     public void claimRandomTile(Empire faction){
         ArrayList<Land> list = faction.getPlayableBorderTiles();
+        if(list == null || list.isEmpty()){
+            return;
+        }
         Land borderTile, tileToclaim;
         //int num2 =0;
         borderTile=list.get((int)(Math.random()*list.size()));
@@ -80,7 +83,11 @@ public class Grid extends JPanel{
             //     System.out.println(tileToclaim.ID);
             // }
             num=(int)(Math.random()*list.size());
-            tileToclaim=list.get(num);
+            try{
+                tileToclaim=list.get(num);
+            }catch(IndexOutOfBoundsException e){
+                return;
+            }
             // if(num2>=25){
             //     System.out.println("loop occured");
             //     return;
