@@ -12,6 +12,9 @@ abstract class  Land  extends JPanel  {
         below=null;
     }
     public Land(int identifier){
+        if(identifier < 0){
+            throw new IllegalArgumentException("Tile ID must be non-negative: " + identifier);
+        }
         ID=identifier;
         left=null;
         right=null;
