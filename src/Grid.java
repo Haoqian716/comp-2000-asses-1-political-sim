@@ -23,7 +23,6 @@ public class Grid extends JPanel{
             for(int x = 0;x<gridSize;x++){
                 placeHolder=new Forest();
                 placeHolder.ID=tileID;
-                placeHolder.setBackground(Color.black);
                 placeHolder.setSize(tileSizeWidth-1, tileSizeHeight-1);
                 placeHolder.setLocation(x*tileSizeWidth , y*tileSizeHeight);
                 add(placeHolder);
