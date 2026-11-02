@@ -1,8 +1,8 @@
-import java.awt.*;
+import java.awt.Graphics;
 
 public class Plains extends Land {
-
-    public Plains(){
-        setBackground(new Color(110, 170, 70));
+    @Override
+    protected void drawTerrain(Graphics g) {
+        TileArt.drawPlains(g, getWidth(), getHeight());
     }
 }

@@ -6,24 +6,21 @@ public class TileArt {
     }
 
     public static void drawForest(Graphics g, int width, int height) {
-        g.setColor(new Color(20, 90, 30));
+        g.setColor(Color.BLACK);
         g.fillRect(0, 0, width, height);
-        int treeW = Math.max(6, width / 3);
-        int trunkW = Math.max(2, treeW / 5);
-        int trunkH = Math.max(2, height / 6);
-        drawTree(g, width / 4, height, treeW, trunkW, trunkH);
-        drawTree(g, width / 2, height, treeW, trunkW, trunkH);
-        drawTree(g, width * 3 / 4, height, treeW, trunkW, trunkH);
-    }
-
-    private static void drawTree(Graphics g, int cx, int baseY, int treeW, int trunkW, int trunkH) {
-        g.setColor(new Color(80, 50, 25));
-        g.fillRect(cx - trunkW / 2, baseY - trunkH, trunkW, trunkH);
-        g.setColor(new Color(25, 130, 55));
-        int canopyH = baseY / 2;
-        int[] xs = {cx - treeW / 2, cx, cx + treeW / 2};
-        int[] ys = {baseY - trunkH, baseY - trunkH - canopyH, baseY - trunkH};
-        g.fillPolygon(xs, ys, 3);
+        // Team artwork uses coordinates on a 100 by 100 tile.
+        // Scale fresh coordinates for each paint so resizing cannot accumulate.
+        g.setColor(new Color(100, 65, 23));
+        int trunkWidth = Math.max(1, width * 10 / 100);
+        int trunkHeight = Math.max(1, height * 25 / 100);
+        g.fillRect(width * 25 / 100, height * 75 / 100, trunkWidth, trunkHeight);
+        g.fillRect(width * 65 / 100, height * 75 / 100, trunkWidth, trunkHeight);
+        int[] xs = {width * 5 / 100, width * 30 / 100, width * 50 / 100,
+            width * 70 / 100, width * 95 / 100};
+        int[] ys = {height * 75 / 100, height * 15 / 100, height * 60 / 100,
+            height * 15 / 100, height * 75 / 100};
+        g.setColor(new Color(31, 80, 44));
+        g.fillPolygon(xs, ys, xs.length);
     }
 
     public static void drawPlains(Graphics g, int width, int height) {
@@ -38,17 +35,14 @@ public class TileArt {
     }
 
     public static void drawMountain(Graphics g, int width, int height) {
-        g.setColor(new Color(105, 105, 105));
+        g.setColor(Color.GRAY);
         g.fillRect(0, 0, width, height);
-        int peakH = height * 2 / 3;
-        int[] xs = {0, width / 2, width};
-        int[] ys = {height, height - peakH, height};
-        g.setColor(new Color(70, 70, 70));
-        g.fillPolygon(xs, ys, 3);
-        int[] capX = {width / 2 - width / 8, width / 2, width / 2 + width / 8};
-        int[] capY = {height - peakH / 2, height - peakH, height - peakH / 2};
-        g.setColor(new Color(240, 240, 245));
-        g.fillPolygon(capX, capY, 3);
+        int[] xs = {width * 10 / 100, width * 35 / 100, width * 48 / 100,
+            width * 60 / 100, width * 90 / 100};
+        int[] ys = {height * 95 / 100, height * 20 / 100, height * 50 / 100,
+            height * 10 / 100, height * 95 / 100};
+        g.setColor(Color.BLACK);
+        g.drawPolyline(xs, ys, xs.length);
     }
 
     public static void drawFlag(Graphics g, int width, int height, Color factionColour) {
